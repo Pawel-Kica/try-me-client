@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@3005&family=Montserrat+Alternates:wght@300;400;500;700;900&family=Noto+Sans:wght@300;400;500;700;900&display=swap'); */
+
+:root {
+    /* Light theme */
+    --light: #000;
+    --secondary-light: #fff;
+
+    /* Dark theme */
+    --dark: #fff;
+    --secondary-dark: #111;
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+
+    /* Color styles */
+    --primary: var(--light);
+    --secondary: var(--secondary-light);
+
+    color: var(--primary);
+    background-color: var(--background);
+}
+
+html.dark {
+    --primary: var(--dark);
+    --secondary: var(--secondary-dark);
+
+    color: var(--primary);
+    background-color: var(--background);
+}
+
+main.wrapper {
+    min-height: 100vh;
+    min-height: 100svh;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
