@@ -1,8 +1,11 @@
-import CropDialog from '@/components/crop-dialog'
-import { Avatar, Button, TextField, Typography } from '@mui/material'
+import CropDialog from '@/components/atoms/crop-dialog'
+import { UserGroupsResult, userGroupsQuery } from '@/helpers/gql/gql-queries'
+import { gqlRequest } from '@/helpers/gql/gql-request'
+import { Avatar, Button, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'react-image-crop/dist/ReactCrop.css'
+import { useQuery } from 'react-query'
 
 const challenges = [
     {
@@ -49,9 +52,6 @@ export default () => {
     const doChallengeClicked = (challenge: any) => {
         console.log({ challenge })
     }
-    const createChallengeClicked = () => {
-        router.push('/nowe-wyzwanie')
-    }
     const [dialogOpened, setDialog] = useState(false)
     const chooseImageClicked = () => {
         setDialog(true)
@@ -59,6 +59,24 @@ export default () => {
     const onCropped = (src: string) => {
         setImageUrl(src)
     }
+
+    const { data: teams } = useQuery<UserGroupsResult[]>({
+        queryKey: 'chuj',
+        queryFn: async () => gqlRequest(userGroupsQuery),
+    })
+    const [selectedTeam, setSelectedTeam] = useState<string>('')
+
+    useEffect(() => {
+        setSelectedTeam(teams?.[0]?.group_id || '')
+    }, [teams])
+
+    const createChallengeClicked = () => {
+        router.push('/nowe-wyzwanie')
+    }
+
+    if (!teams) return
+
+    // const teams = data.map(team =)
 
     return (
         <div
@@ -83,6 +101,23 @@ export default () => {
                         X
                     </Avatar>
                 </div>
+
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={selectedTeam}
+                    label="Age"
+                    onChange={(e) => setSelectedTeam(e.target.value)}
+                >
+                    {teams.map((team) => (
+                        <MenuItem key={team.group_id} value={team.group_id}>
+                            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                                <img alt="" src={team.icon} width={32} height={32} style={{ width: 32, height: 32, borderRadius: '50%' }} />
+                                <span>{team.title}</span>
+                            </div>
+                        </MenuItem>
+                    ))}
+                </Select>
 
                 <Button variant="outlined" onClick={createChallengeClicked}>
                     Utwórz
