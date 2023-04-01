@@ -49,7 +49,7 @@ export default function Home() {
         console.log({ challenge })
     }
     const createChallengeClicked = () => {
-        router.push('/dolacz')
+        router.push('/nowe-wyzwanie')
     }
 
     if (!isInAnyTeam)
@@ -87,7 +87,7 @@ export default function Home() {
         >
             <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'stretch', width: '100%' }}>
                 <Typography variant="h4" component="h1" gutterBottom>
-                    Twoje wyzwania:
+                    Wyzwania dla Ciebie:
                 </Typography>
                 <Button variant="outlined" onClick={createChallengeClicked}>
                     Stwórz nowe
