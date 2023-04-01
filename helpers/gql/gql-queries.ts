@@ -243,3 +243,18 @@ export enum TaskSubmissionStatus {
     pending = 'pending',
     rejected = 'rejected',
 }
+
+export const submitTaskQuery: QueryEntity = {
+    name: 'submit_task',
+    query: gql`
+        mutation($task_id:String!,$description:String!,attachments:[String!]!) {
+            submit_task(
+                task_id: $task_id
+                description: $description
+                attachments: $attachments
+            ) {
+                ${taskSubmissionString}
+            }
+        }
+    `,
+}
