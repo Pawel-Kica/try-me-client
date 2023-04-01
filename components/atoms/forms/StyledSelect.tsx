@@ -1,5 +1,5 @@
 // Tools
-import { alpha, styled, SxProps } from '@mui/material'
+import { styled, SxProps } from '@mui/material'
 // Types
 import type { ChangeEvent } from 'react'
 // Material UI Components
@@ -16,11 +16,13 @@ const StyledSelectBase = styled(Select)(({ theme }) => ({
         padding: '10px 16px',
         border: `3px solid ${theme.palette.primary.main}`,
         fontFamily: 'Montserrat',
-        borderRadius: 10,
+        borderRadius: '10 !important',
+        background: 'transparent !important',
     },
-    ...(theme.palette.mode === 'light' && {
-        background: theme.palette.background.default,
-    }),
+    ...(theme.palette.mode === 'light' &&
+        {
+            // background: theme.palette.background.default,
+        }),
 }))
 
 export interface OptionWithAlias<T> {
