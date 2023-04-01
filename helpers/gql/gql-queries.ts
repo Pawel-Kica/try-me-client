@@ -7,26 +7,36 @@ username
 first_name
 last_name
 email
+photo
 `
+
+export const taskString = gql`
+    task_id
+    description
+    due_date
+    max_points
+    created_by{
+        ${userString}
+    }
+    invited_users{
+        ${userString}
+    }
+`
+
 export interface User {
     user_id: string
     username: string
     email: string
     first_name: string
     last_name: string
+    photo: string
 }
 
-export interface AuthenticatedUser {
+export interface AuthenticatedUser extends User {
     authToken: string
 }
 
-export interface CreateUserArgs {
-    username: string
-    first_name: string
-    last_name: string
-    email: string
-    password: string
-}
+export interface CreateUserArgs extends User {}
 
 export const createUserQuery: QueryEntity = {
     name: 'create_user',
@@ -104,12 +114,29 @@ export interface Group {
     title: string
     description: string
     icon: string
-}
-
-export interface UserGroupsResult extends Group {
     owner: User
+    tasks: Task[]
     members: User[]
+    invitation_id: string
 }
+export const groupString = gql`
+    group_id
+    title
+    description
+    icon
+    owner{
+        ${userString}
+    }
+    tasks{
+        ${taskString}
+    }
+    members{
+        ${userString}
+    }
+    invitation_id
+`
+
+export interface UserGroupsResult extends Group {}
 
 export interface CreateGroupArgs {
     title: string
@@ -122,15 +149,12 @@ export const createGroupQuery: QueryEntity = {
     query: gql`
         mutation ($title: String!, $description: String!, $members: [String!]!) {
             create_group(title: $title, description: $description, members: $members) {
-                group_id
-                title
-                description
-                invitation_id
-                icon
+                ${groupString}
             }
         }
     `,
 }
+export interface CreateGroupResult extends UserGroupsResult {}
 
 export const userTasksQuery: QueryEntity = {
     name: 'user_tasks',
@@ -138,10 +162,15 @@ export const userTasksQuery: QueryEntity = {
         query {
             user_tasks {
                 task_id
-                due_date
+                title
                 description
+                max_points
+                due_date
                 created_by {
-                    user_id
+                    ${userString}
+                }
+                invited_users{
+                    ${userString}
                 }
             }
         }
@@ -167,14 +196,7 @@ export const createTaskQuery: QueryEntity = {
                 max_points: $max_points
                 group_id: $group_id
             ) {
-                task_id
-                title
-                description
-                max_points
-                due_date
-                created_by {
-                    user_id
-                }
+                ${taskString}
             }
         }
     `,
@@ -183,4 +205,56 @@ export const createTaskQuery: QueryEntity = {
 
 export interface Task {
     task_id: string
+    description: String
+    due_date: string
+    max_points: number
+    created_by: User
+    invited_users: User[]
+}
+
+export interface TaskSubmission {
+    task_submission_id: string
+    task: Task
+    user: User
+    attachments: string[]
+    description: string
+    status: TaskSubmissionStatus
+    received_points: number
+    owner_comment: string
+    created_at: string
+}
+
+export const taskSubmissionString = gql`
+    task_submission_id
+    task
+    user{
+        ${userString}
+    }
+    attachments
+    description
+    status
+    received_points
+    owner_comment
+    created_at
+`
+
+export enum TaskSubmissionStatus {
+    approved = 'approved',
+    pending = 'pending',
+    rejected = 'rejected',
+}
+
+export const submitTaskQuery: QueryEntity = {
+    name: 'submit_task',
+    query: gql`
+        mutation($task_id:String!,$description:String!,attachments:[String!]!) {
+            submit_task(
+                task_id: $task_id
+                description: $description
+                attachments: $attachments
+            ) {
+                ${taskSubmissionString}
+            }
+        }
+    `,
 }
