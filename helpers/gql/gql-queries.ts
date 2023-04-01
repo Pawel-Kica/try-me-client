@@ -106,12 +106,13 @@ export interface Group {
     title: string
     description: string
     icon: string
+    owner: User
+    tasks: Task[]
+    members: User[]
+    invitation_id: string
 }
 
-export interface UserGroupsResult extends Group {
-    owner: User
-    members: User[]
-}
+export interface UserGroupsResult extends Group {}
 
 export interface CreateGroupArgs {
     title: string
@@ -198,4 +199,34 @@ export interface Task {
     max_points: number
     created_by: User
     invited_users: User[]
+}
+
+export interface TaskSubmission {
+    task_submission_id: string
+    task: Task
+    user_id: User
+    attachments: string[]
+    description: string
+    status: TaskSubmissionStatus
+    received_points: number
+    owner_comment: string
+    created_at: string
+}
+
+export const taskSubmissionString = gql`
+    task_submission_id
+    task
+    user_id
+    attachments
+    description
+    status
+    received_points
+    owner_comment
+    created_at
+`
+
+export enum TaskSubmissionStatus {
+    approved = 'approved',
+    pending = 'pending',
+    rejected = 'rejected',
 }
