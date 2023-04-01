@@ -43,7 +43,6 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
         queryKey: 'user_tasks',
         queryFn: async () => gqlRequest(userTasksQuery),
     })
-    console.log(data, 'tuuu')
 
     return (
         <>

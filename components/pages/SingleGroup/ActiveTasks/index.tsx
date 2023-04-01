@@ -4,10 +4,12 @@ import type { FunctionComponent } from 'react'
 import type { AvailableTasksRequestResponse } from '@/types/API'
 // Material UI Components
 import { Typography, Stack, Divider } from '@mui/material'
-import Task from './Task'
+import TaskComponent from './Task'
 
 const ActiveTasks: FunctionComponent<AvailableTasksRequestResponse> = (props) => {
     const amountOfAvailableTasks: number = props.tasks.length
+
+    console.log(props)
 
     return (
         <>
@@ -22,7 +24,7 @@ const ActiveTasks: FunctionComponent<AvailableTasksRequestResponse> = (props) =>
 
             <Stack spacing={3} divider={<Divider />}>
                 {props.tasks.map((item, index) => {
-                    return <Task key={index} {...item} />
+                    return <TaskComponent key={index} {...item} />
                 })}
             </Stack>
         </>

@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import type { FunctionComponent } from 'react'
 import { Typography, Box, Avatar } from '@mui/material'
 import StyledButton from '@/components/atoms/forms/StyledButton'
-import { Task } from '../../../../helpers/gql/gql-queries'
+import { Task as TaskComponent } from '../../../../helpers/gql/gql-queries'
 
 const Base = styled('div')(({ theme }) => ({
     background: '#fff',
@@ -12,8 +12,7 @@ const Base = styled('div')(({ theme }) => ({
     borderRadius: '5px',
 }))
 
-const Task: FunctionComponent<Task> = (props) => {
-    console.log(props)
+const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
     const amountOfPeopleWhoCompletedTheTask = props.submissions.length
     return (
         <Base>
@@ -59,4 +58,4 @@ const Task: FunctionComponent<Task> = (props) => {
     )
 }
 
-export default Task
+export default TaskComponent

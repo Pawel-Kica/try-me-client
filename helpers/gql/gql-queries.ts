@@ -10,6 +10,19 @@ email
 photo
 `
 
+export const taskSubmissionString = gql`
+    task_submission_id
+    user{
+        ${userString}
+    }
+    attachments
+    description
+    status
+    received_points
+    owner_comment
+    created_at
+`
+
 export const taskString = gql`
     task_id
     description
@@ -173,6 +186,9 @@ export const userTasksQuery: QueryEntity = {
                 invited_users{
                     ${userString}
                 }
+                submissions{
+                    ${taskSubmissionString}
+                }
             }
         }
     `,
@@ -228,20 +244,6 @@ export interface TaskSubmission {
     owner_comment: string
     created_at: string
 }
-
-export const taskSubmissionString = gql`
-    task_submission_id
-    task
-    user{
-        ${userString}
-    }
-    attachments
-    description
-    status
-    received_points
-    owner_comment
-    created_at
-`
 
 export enum TaskSubmissionStatus {
     approved = 'approved',
