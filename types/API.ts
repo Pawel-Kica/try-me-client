@@ -9,7 +9,7 @@ export interface Task {
     involvedPeople: {
         avatar: string
         completed: boolean
-    }
+    }[]
 }
 
 // To jest jeden request
