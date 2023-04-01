@@ -19,7 +19,7 @@ const PlaceBase = styled('div')(({ theme }) => ({
         background: '#DBB000',
     },
     '&.place-2': {
-        background: '#ECECEC',
+        background: '#C0C0C0',
         color: '#000',
     },
     '&.place-3': {

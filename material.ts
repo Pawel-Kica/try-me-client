@@ -85,10 +85,10 @@ export default createTheme({
                     fontSize: '1.8rem',
                 },
                 h4: {
-                    fontSize: '24px',
+                    fontSize: '28px',
                     fontWeight: 500,
                     fontFamily: "'Montserrat', sans-serif",
-                    marginBottom: '8px',
+                    marginBottom: '4px',
                 },
                 h3: {
                     fontSize: '32px',
@@ -145,12 +145,18 @@ export default createTheme({
                     fontSize: '1.2rem',
                     fontFamily: "'Montserrat', sans-serif",
                     color: alpha('#000', 0.7),
+                    strong: {
+                        color: '#000',
+                    },
                 },
                 body2: {
                     lineHeight: 1.6,
                     fontSize: '1rem',
                     fontFamily: "'Montserrat', sans-serif",
                     color: alpha('#000', 0.7),
+                    strong: {
+                        color: '#000',
+                    },
                 },
             },
         },
