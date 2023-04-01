@@ -1,5 +1,8 @@
-import { Button, TextField, Typography } from '@mui/material'
+import CropDialog from '@/components/crop-dialog'
+import { Avatar, Button, TextField, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import 'react-image-crop/dist/ReactCrop.css'
 
 const challenges = [
     {
@@ -38,6 +41,7 @@ const challenges = [
 
 export default () => {
     const router = useRouter()
+    const [imageSrc, setImageUrl] = useState<string>()
 
     const joinClicked = () => {
         router.push('/dolacz')
@@ -48,7 +52,16 @@ export default () => {
     const createChallengeClicked = () => {
         router.push('/nowe-wyzwanie')
     }
+    const [dialogOpened, setDialog] = useState(false)
+    const chooseImageClicked = () => {
+        setDialog(true)
+    }
+    const onCropped = (src: string) => {
+        setImageUrl(src)
+    }
 
+    // const [crop, setCrop] = useState<Crop>()
+    // return <ReactCrop crop={crop} onChange={(crop, percentCrop) => setCrop(crop)} />
     return (
         <div
             style={{
@@ -59,12 +72,21 @@ export default () => {
                 alignItems: 'stretch',
             }}
         >
+            <CropDialog open={dialogOpened} closeClicked={() => setDialog(false)} onReadyUrl={onCropped} />
             <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'stretch', gap: 8, width: '100%' }}>
                 <Typography variant="h4" component="h1" gutterBottom>
                     Nowe wyzwanie:
                 </Typography>
                 <TextField id="outlined-basic" label="Co trzeba zrobić?" variant="outlined" />
                 <TextField id="outlined-basic2" label="Opis projektu" variant="outlined" />
+
+                <Button variant="outlined" onClick={chooseImageClicked}>
+                    Wybierz obraz
+                </Button>
+
+                <Avatar sx={{ width: 64, height: 64 }} src={imageSrc}>
+                    X
+                </Avatar>
 
                 <Button variant="outlined" onClick={createChallengeClicked}>
                     Utwórz
