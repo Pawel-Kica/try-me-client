@@ -1,24 +1,8 @@
-export interface Team {
-    //
-}
-
-export interface Task {
-    createdAt: string
-    title: string
-    description: string
-    involvedPeople: {
-        avatar: string
-        completed: boolean
-    }[]
-}
+import { Task } from '../helpers/gql/gql-queries'
 
 // To jest jeden request
 export interface AvailableTasksRequestResponse {
     tasks: Task[]
-}
-
-export interface User {
-    //
 }
 
 // ! PAWEL !!!

@@ -10,7 +10,7 @@ import NavigateBefore from '@mui/icons-material/NavigateBefore'
 const Base = styled('header')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    width: '100vw',
+    width: '100%',
     marginBottom: '36px',
     h3: {
         flexGrow: 1,
