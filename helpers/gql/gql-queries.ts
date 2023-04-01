@@ -210,6 +210,7 @@ export interface Task {
     max_points: number
     created_by: User
     invited_users: User[]
+    submissions: TaskSubmission[]
 }
 
 export interface TaskSubmission {
