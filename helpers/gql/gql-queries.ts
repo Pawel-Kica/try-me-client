@@ -147,3 +147,40 @@ export const userTasksQuery: QueryEntity = {
         }
     `,
 }
+
+export const createTaskQuery: QueryEntity = {
+    name: 'create_task',
+    query: gql`
+        mutation (
+            $title: String!
+            $description: String!
+            $due_date: String!
+            $invited_users: [String!]!
+            $max_points: Int!
+            $group_id: String!
+        ) {
+            create_task(
+                title: $title
+                description: $description
+                due_date: $due_date
+                invited_users: $invited_users
+                max_points: $max_points
+                group_id: $group_id
+            ) {
+                task_id
+                title
+                description
+                max_points
+                due_date
+                created_by {
+                    user_id
+                }
+            }
+        }
+    `,
+    auth: true,
+}
+
+export interface Task {
+    task_id: string
+}
