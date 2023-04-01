@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap')
 
-* 
+*
     font-family: 'Montserrat', sans-serif
-
 
 body,main
     min-height: 100svh
@@ -10,12 +9,18 @@ body,main
     max-height: 100svh
     display: grid !important
     grid-template-rows: 1fr auto
+    overflow: hidden
 
 main.wrapper, .MuiContainer-root
     padding: 0 !important
 
+main.wrapper
+    display: grid
+    grid-template-rows: auto 1fr 56px
+
 .content
-    padding: 12px 8px 0 8px
+    overflow-y: scroll
+    padding: 12px 8px 16px 8px
 
 .tryme
     color: red

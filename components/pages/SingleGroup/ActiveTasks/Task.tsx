@@ -10,6 +10,7 @@ const Base = styled('div')(({ theme }) => ({
     background: '#fff',
     padding: '8px',
     borderRadius: '5px',
+    boxShadow: '1px 1px 4px 0 #555',
 }))
 
 const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
