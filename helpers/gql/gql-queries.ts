@@ -9,6 +9,20 @@ last_name
 email
 photo
 `
+
+export const taskString = gql`
+    task_id
+    description
+    due_date
+    max_points
+    created_by{
+        ${userString}
+    }
+    invited_users{
+        ${userString}
+    }
+`
+
 export interface User {
     user_id: string
     username: string
@@ -22,13 +36,7 @@ export interface AuthenticatedUser extends User {
     authToken: string
 }
 
-export interface CreateUserArgs {
-    username: string
-    first_name: string
-    last_name: string
-    email: string
-    password: string
-}
+export interface CreateUserArgs extends User {}
 
 export const createUserQuery: QueryEntity = {
     name: 'create_user',
@@ -111,6 +119,22 @@ export interface Group {
     members: User[]
     invitation_id: string
 }
+export const groupString = gql`
+    group_id
+    title
+    description
+    icon
+    owner{
+        ${userString}
+    }
+    tasks{
+        ${taskString}
+    }
+    members{
+        ${userString}
+    }
+    invitation_id
+`
 
 export interface UserGroupsResult extends Group {}
 
@@ -125,15 +149,12 @@ export const createGroupQuery: QueryEntity = {
     query: gql`
         mutation ($title: String!, $description: String!, $members: [String!]!) {
             create_group(title: $title, description: $description, members: $members) {
-                group_id
-                title
-                description
-                invitation_id
-                icon
+                ${groupString}
             }
         }
     `,
 }
+export interface CreateGroupResult extends UserGroupsResult {}
 
 export const userTasksQuery: QueryEntity = {
     name: 'user_tasks',
@@ -175,17 +196,7 @@ export const createTaskQuery: QueryEntity = {
                 max_points: $max_points
                 group_id: $group_id
             ) {
-                task_id
-                title
-                description
-                max_points
-                due_date
-                created_by {
-                    ${userString}
-                }
-                invited_users{
-                    ${userString}
-                }
+                ${taskString}
             }
         }
     `,
@@ -204,7 +215,7 @@ export interface Task {
 export interface TaskSubmission {
     task_submission_id: string
     task: Task
-    user_id: User
+    user: User
     attachments: string[]
     description: string
     status: TaskSubmissionStatus
@@ -216,7 +227,9 @@ export interface TaskSubmission {
 export const taskSubmissionString = gql`
     task_submission_id
     task
-    user_id
+    user{
+        ${userString}
+    }
     attachments
     description
     status
