@@ -1,29 +1,37 @@
-body, main {
-  min-height: 100svh;
-  height: 100svh;
-  max-height: 100svh;
-  display: grid !important;
-  grid-template-rows: 1fr auto;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
 }
 
-main.wrapper, .MuiContainer-root {
-  padding: 0 !important;
+body,
+main {
+    min-height: 100svh;
+    height: 100svh;
+    max-height: 100svh;
+    display: grid !important;
+    grid-template-rows: 1fr auto;
+}
+
+main.wrapper,
+.MuiContainer-root {
+    padding: 0 !important;
 }
 
 .content {
-  padding: 4px;
+    padding: 4px;
 }
 
 .tryme {
-  color: red;
+    color: red;
 }
 
 .main-h {
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .header {
-  background-color: blue;
+    background-color: blue;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,5 +1,5 @@
 // Tools
-import { styled, SxProps } from '@mui/material'
+import { alpha, styled, SxProps } from '@mui/material'
 // Types
 import type { ChangeEvent } from 'react'
 // Material UI Components
@@ -8,11 +8,15 @@ import MenuItem from '@mui/material/MenuItem'
 // Styled components
 const StyledSelectBase = styled(Select)(({ theme }) => ({
     fontSize: '16px',
+    borderRadius: 10,
     '@media (max-width:500px)': {
         width: '100%',
     },
     '.MuiSelect-select': {
-        padding: '14px 16px',
+        padding: '10px 16px',
+        border: `3px solid ${theme.palette.primary.main}`,
+        fontFamily: 'Montserrat',
+        borderRadius: 10,
     },
     ...(theme.palette.mode === 'light' && {
         background: theme.palette.background.default,
@@ -43,17 +47,7 @@ export default function StyledSelect<T extends number | string | Record<any, any
         <StyledSelectBase
             onChange={props.onChange as any} //
             value={props.value}
-            MenuProps={{
-                sx: (theme) => {
-                    return theme.palette.mode === 'light'
-                        ? {
-                              '.MuiList-root': {
-                                  background: '#fff',
-                              },
-                          }
-                        : null
-                },
-            }}
+            color="primary"
             className={props.className}
             sx={(theme) => (typeof props.sx === 'function' ? props.sx(theme) : props.sx ?? new Object())}
         >

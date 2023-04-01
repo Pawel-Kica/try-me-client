@@ -13,9 +13,9 @@ export interface User {
 // ! PAWEL !!!
 // Zro jakis request co zwroci dane w tym interfejsie:
 export interface StatsAPIRequest {
-    monthly: Statistics
-    annualy: Statistics
-    general: Statistics
+    monthly: Statistics[]
+    annualy: Statistics[]
+    general: Statistics[]
 }
 
 export interface Statistics {

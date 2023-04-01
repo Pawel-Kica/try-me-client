@@ -1,11 +1,11 @@
-import { alpha } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { alpha } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
 
 export const COLORS = {
     PRIMARY: '#F06543',
     SECONDARY: '#F09D51',
     TEXT: '#121616',
-};
+}
 
 export default createTheme({
     palette: {
@@ -34,10 +34,17 @@ export default createTheme({
         },
     },
     components: {
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    fontFamily: "'Montserrat', sans-serif",
+                },
+            },
+        },
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    background: alpha('#052946', 0.08),
+                    background: alpha('#000', 0.1),
                 },
             },
         },
@@ -165,4 +172,4 @@ export default createTheme({
             },
         },
     },
-});
+})
