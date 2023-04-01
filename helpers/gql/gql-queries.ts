@@ -180,3 +180,7 @@ export const createTaskQuery: QueryEntity = {
     `,
     auth: true,
 }
+
+export interface Task {
+    task_id: string
+}
