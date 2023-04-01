@@ -17,17 +17,19 @@ const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
     return (
         <Base>
             <Typography variant="body2">
-                dodane przez: <strong>{props.created_by.username}</strong>, {props.created_at}
+                Autor: <strong>{props.created_by.first_name + ' ' + props.created_by.last_name}</strong>, {'3 godziny temu'}
             </Typography>
-            <Typography variant="h3">{props.title}</Typography>
+            <Typography variant="h3" className="mt-2">
+                {props.title}
+            </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
                 {props.description}
             </Typography>{' '}
-            <Typography variant="body1" sx={{ mb: 1 }}>
+            <Typography variant="body1" sx={{ mt: 1 }}>
                 <strong>{`${amountOfPeopleWhoCompletedTheTask} / ${props.invited_users.length} `}</strong>
                 osób ukończyło zadanie
             </Typography>
-            {/*  */}
+            <div className="mt-2 mb-1">Grupa: Developerzy</div>
             <Box
                 sx={{
                     display: 'grid',
@@ -39,15 +41,18 @@ const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
                 }}
             >
                 {props.invited_users.map((item, index) => {
+                    const a = props.submissions.find((e) => e.user.user_id === item.user_id)
+
                     return (
                         <Avatar
+                            className="aspect-square"
                             alt={`${index}`} //
                             key={index}
                             src={item.photo}
                             sx={{
                                 width: '100%',
                                 height: '100%',
-                                filter: `grayscale(${Number(props.submissions.find((e) => e.user.user_id === item.user_id))})`,
+                                filter: `grayscale(${a ? 1 : 0})`,
                             }}
                         />
                     )

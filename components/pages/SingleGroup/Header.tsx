@@ -36,10 +36,10 @@ interface SingleGroupHeaderProps {
 const SingleGroupHeader: FunctionComponent<SingleGroupHeaderProps> = (props) => {
     return (
         <Base>
-            <IconButton onClick={props.back}>
+            <IconButton onClick={props.back} className="opacity-0">
                 <NavigateBefore sx={{ fontSize: '42px !important' }} />
             </IconButton>
-            <h3>{props.teamName}</h3>
+            <h3 className="!text-3xl">{props.teamName}</h3>
             <IconButton>
                 <Settings />
             </IconButton>

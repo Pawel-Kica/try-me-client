@@ -13,7 +13,7 @@ const ActiveTasks: FunctionComponent<AvailableTasksRequestResponse> = (props) =>
 
     return (
         <>
-            <Typography variant="h3" sx={{ mt: '48px' }}>
+            <Typography variant="h3" sx={{ mt: '24px' }}>
                 Aktywne zadania
             </Typography>
 
