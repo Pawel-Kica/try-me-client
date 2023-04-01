@@ -44,7 +44,7 @@ export default createTheme({
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    background: alpha('#052946', 0.08),
+                    background: alpha('#000', 0.1),
                 },
             },
         },
