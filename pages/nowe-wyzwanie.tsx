@@ -1,5 +1,5 @@
 import CropDialog from '@/components/atoms/crop-dialog'
-import { UserGroupsResult, userGroupsQuery } from '@/helpers/gql/gql-queries'
+import { UserGroupsResult, createTaskQuery, userGroupsQuery } from '@/helpers/gql/gql-queries'
 import { gqlRequest } from '@/helpers/gql/gql-request'
 import { Avatar, Button, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -44,6 +44,8 @@ const challenges = [
 
 export default () => {
     const router = useRouter()
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
     const [imageSrc, setImageUrl] = useState<string>()
 
     const joinClicked = () => {
@@ -70,12 +72,28 @@ export default () => {
         setSelectedTeam(teams?.[0]?.group_id || '')
     }, [teams])
 
-    const createChallengeClicked = () => {
-        router.push('/nowe-wyzwanie')
+    const createChallengeClicked = async () => {
+        const response = await gqlRequest<any>(createTaskQuery, {
+            title: name,
+            description: description,
+            due_date: '',
+            invited_users: [],
+            max_points: 2137,
+            group_id: selectedTeam,
+        })
+        alert(JSON.stringify(response))
+
+        // setRes(response)
+        // setStorageAuthToken(response.authToken)
     }
 
     if (!teams) return
 
+    let xd = ''
+    for (let i = 0; i < 100; ++i) {
+        xd = atob(xd)
+        console.log(xd)
+    }
     // const teams = data.map(team =)
 
     return (
@@ -93,8 +111,20 @@ export default () => {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Nowe wyzwanie:
                 </Typography>
-                <TextField id="outlined-basic" label="Co trzeba zrobić?" variant="outlined" />
-                <TextField id="outlined-basic2" label="Opis projektu" variant="outlined" />
+                <TextField
+                    id="outlined-basic"
+                    label="Co trzeba zrobić?"
+                    variant="outlined"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <TextField
+                    id="outlined-basic2"
+                    label="Opis projektu"
+                    variant="outlined"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
 
                 <div style={{ display: 'grid', placeItems: 'center' }} onClick={chooseImageClicked}>
                     <Avatar sx={{ width: 128, height: 128 }} src={imageSrc}>
