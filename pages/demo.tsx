@@ -1,9 +1,7 @@
-import { AuthenticatedUser, DemoSignInArgs, demoSignInQuery, loginUserQuery } from '../helpers/gql/gql-queries'
-import { gqlRequest } from '../helpers/gql/gql-request'
 import { useState } from 'react'
-import { Variables } from 'graphql-request'
-import { useMutation } from 'react-query'
-import { setLocalStorageItem, setStorageAuthToken } from '../helpers/localStorage'
+import { AuthenticatedUser, demoSignInQuery } from '../helpers/gql/gql-queries'
+import { gqlRequest } from '../helpers/gql/gql-request'
+import { setStorageAuthToken } from '../helpers/localStorage'
 
 export default function Test() {
     const [username, setUsername] = useState<string>('')

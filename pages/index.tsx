@@ -1,31 +1,141 @@
-import { Button, Typography } from '@mui/material'
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
+import { Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
+import React from 'react'
+
+const teams = [
+    {
+        id: 1,
+        imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
+        name: 'Sabre Tenis',
+        people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
+        description: 'Tenis w trakcie pracy, oby Piotrek nie widział',
+    },
+    {
+        id: 912,
+        imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
+        name: 'Akademikowy tenis',
+        people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
+        description: 'Akropol',
+    },
+    {
+        id: 12,
+        imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
+        name: 'Bieganie',
+        people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
+        description: 'Cel: maraton w kwietniu',
+    },
+    {
+        id: 15,
+        imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
+        name: 'Dobczyckie Bestie',
+        people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
+        description: 'Grupy znajomych z Dobczyc',
+    },
+]
 
 export default function Home() {
     const router = useRouter()
 
+    const isInAnyTeam = true
+
     const joinClicked = () => {
         router.push('/dolacz')
     }
+    const doChallengeClicked = (challenge) => {
+        console.log({ challenge })
+    }
+    const createChallengeClicked = () => {
+        router.push('/dolacz')
+    }
+
+    if (!isInAnyTeam)
+        return (
+            <div
+                style={{
+                    height: '100%',
+                    display: 'grid',
+                    placeItems: 'center',
+                }}
+            >
+                <div style={{ display: 'grid', placeItems: 'center' }}>
+                    <Typography className="main-h" variant="h4" component="h1" gutterBottom>
+                        Witaj w <span className="tryme">TryMe</span>
+                    </Typography>
+                    <Typography variant="h6" component="h1" gutterBottom>
+                        Dołacz do drużyny aby, ich zobaczyć wyzwania
+                    </Typography>
+                    <Button variant="outlined" onClick={joinClicked}>
+                        Dołącz
+                    </Button>
+                </div>
+            </div>
+        )
 
     return (
         <div
             style={{
                 height: '100%',
-                display: 'grid',
-                placeItems: 'center',
+                width: '100%',
+                display: 'flex',
+                flexFlow: 'row nowrap',
+                alignItems: 'stretch',
             }}
         >
-            <div style={{ display: 'grid', placeItems: 'center' }}>
-                <Typography className="main-h" variant="h4" component="h1" gutterBottom>
-                    Witaj w <span className="tryme">TryMe</span>
+            <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'stretch', width: '100%' }}>
+                <Typography variant="h4" component="h1" gutterBottom>
+                    Twoje wyzwania:
                 </Typography>
-                <Typography variant="h6" component="h1" gutterBottom>
-                    Dołacz do drużyny aby, ich zobaczyć wyzwania
-                </Typography>
-                <Button variant="outlined" onClick={joinClicked}>
-                    Dołącz
+                <Button variant="outlined" onClick={createChallengeClicked}>
+                    Stwórz nowe
                 </Button>
+
+                <List>
+                    {teams.map((challenge) => (
+                        <React.Fragment key={`${challenge.id}`}>
+                            <ListItem
+                                key={`${challenge.id}`}
+                                alignItems="flex-start"
+                                secondaryAction={
+                                    <Button onClick={() => doChallengeClicked(challenge)}>
+                                        <HighlightOffRoundedIcon></HighlightOffRoundedIcon>
+                                    </Button>
+                                }
+                            >
+                                <ListItemAvatar>
+                                    <Avatar alt="" src={challenge.imgSrc} />
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={challenge.name}
+                                    secondary={
+                                        <React.Fragment>
+                                            <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
+                                                {challenge.description}
+                                            </Typography>
+                                            <Typography
+                                                sx={{ display: 'flex', flexFlow: 'row wrap', gap: 1 }}
+                                                component="span"
+                                                variant="caption"
+                                                color="text.primary"
+                                            >
+                                                {Object.entries(challenge.people).map(([person, done]) => (
+                                                    <Avatar
+                                                        sx={done ? undefined : { filter: 'saturate(0) brightness(0.7)' }}
+                                                        key={person}
+                                                        alt=""
+                                                        src={challenge.imgSrc}
+                                                    />
+                                                ))}
+                                                {/* {new Intl.ListFormat('pl').format(challenge.people)} */}
+                                            </Typography>
+                                        </React.Fragment>
+                                    }
+                                />
+                            </ListItem>
+                            <Divider key={`${challenge.id}-divider`} variant="inset" component="li" />
+                        </React.Fragment>
+                    ))}
+                </List>
             </div>
         </div>
     )
