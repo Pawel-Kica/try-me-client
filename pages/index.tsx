@@ -5,7 +5,7 @@ export default function Home() {
     const router = useRouter()
 
     const joinClicked = () => {
-        alert('xd')
+        router.push('/dolacz')
     }
 
     return (
