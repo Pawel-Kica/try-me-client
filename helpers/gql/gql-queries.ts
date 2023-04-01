@@ -166,6 +166,7 @@ export const userTasksQuery: QueryEntity = {
                 description
                 max_points
                 due_date
+                created_at
                 created_by {
                     ${userString}
                 }
@@ -205,10 +206,12 @@ export const createTaskQuery: QueryEntity = {
 
 export interface Task {
     task_id: string
+    title: string
     description: String
     due_date: string
     max_points: number
     created_by: User
+    created_at: string
     invited_users: User[]
     submissions: TaskSubmission[]
 }
