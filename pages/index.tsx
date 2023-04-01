@@ -3,13 +3,14 @@ import { Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, 
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const teams = [
+const challenges = [
     {
         id: 1,
         imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
         name: 'Sabre Tenis',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
         description: 'Tenis w trakcie pracy, oby Piotrek nie widział',
+        createdBy: 'Paweł',
     },
     {
         id: 912,
@@ -17,6 +18,7 @@ const teams = [
         name: 'Akademikowy tenis',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
         description: 'Akropol',
+        createdBy: 'Ciebie',
     },
     {
         id: 12,
@@ -24,6 +26,7 @@ const teams = [
         name: 'Bieganie',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
         description: 'Cel: maraton w kwietniu',
+        createdBy: 'Michał',
     },
     {
         id: 15,
@@ -31,6 +34,7 @@ const teams = [
         name: 'Dobczyckie Bestie',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
         description: 'Grupy znajomych z Dobczyc',
+        createdBy: 'Paulina',
     },
 ]
 
@@ -42,7 +46,7 @@ export default function Home() {
     const joinClicked = () => {
         router.push('/dolacz')
     }
-    const doChallengeClicked = (challenge) => {
+    const doChallengeClicked = (challenge: any) => {
         console.log({ challenge })
     }
     const createChallengeClicked = () => {
@@ -91,7 +95,7 @@ export default function Home() {
                 </Button>
 
                 <List>
-                    {teams.map((challenge) => (
+                    {challenges.map((challenge) => (
                         <React.Fragment key={`${challenge.id}`}>
                             <ListItem
                                 key={`${challenge.id}`}
@@ -106,7 +110,16 @@ export default function Home() {
                                     <Avatar alt="" src={challenge.imgSrc} />
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary={challenge.name}
+                                    primary={
+                                        <span>
+                                            <Typography sx={{ display: 'inline' }} component="span" variant="h5" color="text.primary">
+                                                {challenge.name}
+                                            </Typography>
+                                            <Typography sx={{ display: 'inline' }} component="span" variant="body1">
+                                                {' od ' + challenge.createdBy}
+                                            </Typography>
+                                        </span>
+                                    }
                                     secondary={
                                         <React.Fragment>
                                             <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
@@ -126,7 +139,6 @@ export default function Home() {
                                                         src={challenge.imgSrc}
                                                     />
                                                 ))}
-                                                {/* {new Intl.ListFormat('pl').format(challenge.people)} */}
                                             </Typography>
                                         </React.Fragment>
                                     }
