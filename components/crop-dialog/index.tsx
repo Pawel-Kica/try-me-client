@@ -64,18 +64,21 @@ export default ({ open, closeClicked, onReadyUrl }: any) => {
     const [imageUrl, setImageUrl] = React.useState<string>()
     const [canvas, setCanvas] = React.useState<HTMLCanvasElement>()
 
+    const chooseAgain = () => {
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.accept = 'image/*'
+        input.onchange = (e: any) => {
+            const file = e.target.files[0]
+            if (!file) return
+            const url = URL.createObjectURL(file)! as string
+            setImageUrl(url)
+        }
+        input.click()
+    }
     React.useEffect(() => {
         if (open) {
-            const input = document.createElement('input')
-            input.type = 'file'
-            input.accept = 'image/*'
-            input.onchange = (e: any) => {
-                const file = e.target.files[0]
-                if (!file) return
-                const url = URL.createObjectURL(file)! as string
-                setImageUrl(url)
-            }
-            input.click()
+            chooseAgain()
         }
     }, [open])
 
@@ -100,12 +103,20 @@ export default ({ open, closeClicked, onReadyUrl }: any) => {
                     <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                         Wybierz i wytnij obraz
                     </Typography>
-                    <Button autoFocus color="inherit" onClick={handleSave}>
+                    <Button disabled={!canvas} autoFocus color="inherit" onClick={handleSave}>
                         Zapisz
                     </Button>
                 </Toolbar>
             </AppBar>
-            <CardContent>{imageUrl && <CropDemo src={imageUrl} onCropped={setCanvas}></CropDemo>}</CardContent>
+            <CardContent>
+                {imageUrl ? (
+                    <CropDemo src={imageUrl} onCropped={setCanvas}></CropDemo>
+                ) : (
+                    <Button autoFocus color="inherit" onClick={chooseAgain}>
+                        Wybierz
+                    </Button>
+                )}
+            </CardContent>
         </Dialog>
     )
 }

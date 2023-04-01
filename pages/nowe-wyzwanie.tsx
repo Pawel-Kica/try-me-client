@@ -60,8 +60,6 @@ export default () => {
         setImageUrl(src)
     }
 
-    // const [crop, setCrop] = useState<Crop>()
-    // return <ReactCrop crop={crop} onChange={(crop, percentCrop) => setCrop(crop)} />
     return (
         <div
             style={{
@@ -80,13 +78,11 @@ export default () => {
                 <TextField id="outlined-basic" label="Co trzeba zrobić?" variant="outlined" />
                 <TextField id="outlined-basic2" label="Opis projektu" variant="outlined" />
 
-                <Button variant="outlined" onClick={chooseImageClicked}>
-                    Wybierz obraz
-                </Button>
-
-                <Avatar sx={{ width: 64, height: 64 }} src={imageSrc}>
-                    X
-                </Avatar>
+                <div style={{ display: 'grid', placeItems: 'center' }} onClick={chooseImageClicked}>
+                    <Avatar sx={{ width: 128, height: 128 }} src={imageSrc}>
+                        X
+                    </Avatar>
+                </div>
 
                 <Button variant="outlined" onClick={createChallengeClicked}>
                     Utwórz
