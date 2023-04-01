@@ -8,7 +8,6 @@
     /* Light theme */
     --light: #000;
     --secondary-light: #fff;
-
     /* Dark theme */
     --dark: #fff;
     --secondary-dark: #111;
@@ -23,7 +22,7 @@ html {
     --secondary: var(--secondary-light);
 
     color: var(--primary);
-    background-color: var(--background);
+    background-color: #e8e9eb;
 }
 
 html.dark {
