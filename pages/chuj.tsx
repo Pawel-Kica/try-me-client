@@ -1,11 +1,11 @@
 // Tools
 // Types
-import type { FunctionComponent } from 'react'
 import type { Statistics } from '@/types/API'
+import type { FunctionComponent } from 'react'
 // Material UI Components
-import Stats from '@/components/pages/SingleGroup/Stats'
-import Header from '@/components/pages/SingleGroup/Header'
 import ActiveTasks from '@/components/pages/SingleGroup/ActiveTasks'
+import Header from '@/components/pages/SingleGroup/Header'
+import Stats from '@/components/pages/SingleGroup/Stats'
 import { useQuery } from 'react-query'
 import { Task, userTasksQuery } from '../helpers/gql/gql-queries'
 import { gqlRequest } from '../helpers/gql/gql-request'

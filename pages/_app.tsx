@@ -10,7 +10,7 @@ import theme from '@/material'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded'
-import { AppBar, BottomNavigation, BottomNavigationAction, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material'
+import { AppBar, BottomNavigation, BottomNavigationAction, ThemeProvider, Toolbar, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -30,11 +30,22 @@ export default function App({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={theme}>
                 <main className="wrapper">
                     <AppBar position="relative">
-                        <Toolbar variant="dense">
+                        <Toolbar variant="regular" style={{ display: 'grid', placeItems: 'center' }}>
                             {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                                 xd
                             </IconButton> */}
-                            <Typography variant="h6" color="inherit" component="div">
+                            <Typography
+                                variant="h6"
+                                color="inherit"
+                                component="div"
+                                style={{
+                                    display: 'grid',
+                                    letterSpacing: '2.1px',
+                                    placeItems: 'center',
+                                    fontWeight: 'bolder',
+                                    fontSize: '2em',
+                                }}
+                            >
                                 TryMe
                             </Typography>
                         </Toolbar>
