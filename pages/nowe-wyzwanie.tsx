@@ -89,13 +89,6 @@ export default () => {
 
     if (!teams) return
 
-    let xd = ''
-    for (let i = 0; i < 100; ++i) {
-        xd = atob(xd)
-        console.log(xd)
-    }
-    // const teams = data.map(team =)
-
     return (
         <div
             style={{
