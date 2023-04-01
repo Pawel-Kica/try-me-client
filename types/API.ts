@@ -6,6 +6,7 @@ export interface Task {
     createdAt: string
     title: string
     description: string
+    authorName: string
     involvedPeople: {
         avatar: string
         completed: boolean
