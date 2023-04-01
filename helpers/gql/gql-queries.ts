@@ -7,6 +7,7 @@ username
 first_name
 last_name
 email
+photo
 `
 export interface User {
     user_id: string
@@ -14,9 +15,10 @@ export interface User {
     email: string
     first_name: string
     last_name: string
+    photo: string
 }
 
-export interface AuthenticatedUser {
+export interface AuthenticatedUser extends User {
     authToken: string
 }
 
@@ -138,10 +140,15 @@ export const userTasksQuery: QueryEntity = {
         query {
             user_tasks {
                 task_id
-                due_date
+                title
                 description
+                max_points
+                due_date
                 created_by {
-                    user_id
+                    ${userString}
+                }
+                invited_users{
+                    ${userString}
                 }
             }
         }
@@ -173,7 +180,10 @@ export const createTaskQuery: QueryEntity = {
                 max_points
                 due_date
                 created_by {
-                    user_id
+                    ${userString}
+                }
+                invited_users{
+                    ${userString}
                 }
             }
         }
@@ -183,4 +193,9 @@ export const createTaskQuery: QueryEntity = {
 
 export interface Task {
     task_id: string
+    description: String
+    due_date: string
+    max_points: number
+    created_by: User
+    invited_users: User[]
 }
