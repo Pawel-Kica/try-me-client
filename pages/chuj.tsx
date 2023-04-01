@@ -69,7 +69,26 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
                             { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
                             { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
                         ],
-                        authorName: 'chuj',
+                        authorName: 'Paweł Kica',
+                    },
+                    {
+                        title: 'Zrob dowolny posiłek',
+                        description: 'Zrob cos tam do jedzenia essa',
+                        createdAt: '3 godziny temu',
+                        involvedPeople: [
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                        ],
+                        authorName: 'Paweł Kica',
                     },
                 ]}
             />

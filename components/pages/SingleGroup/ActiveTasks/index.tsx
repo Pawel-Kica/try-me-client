@@ -4,7 +4,6 @@ import type { FunctionComponent } from 'react'
 import type { AvailableTasksRequestResponse } from '@/types/API'
 // Material UI Components
 import { Typography, Stack, Divider } from '@mui/material'
-
 import Task from './Task'
 
 const ActiveTasks: FunctionComponent<AvailableTasksRequestResponse> = (props) => {
@@ -16,12 +15,12 @@ const ActiveTasks: FunctionComponent<AvailableTasksRequestResponse> = (props) =>
                 Aktywne zadania
             </Typography>
 
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{ mb: 2 }}>
                 Aktualnie dostępne {amountOfAvailableTasks === 1 ? 'jest' : 'są'} <strong>{amountOfAvailableTasks}</strong>
                 {amountOfAvailableTasks === 1 ? ' zadanie' : ' zadania'}
             </Typography>
 
-            <Stack>
+            <Stack spacing={3} divider={<Divider />}>
                 {props.tasks.map((item, index) => {
                     return <Task key={index} {...item} />
                 })}
