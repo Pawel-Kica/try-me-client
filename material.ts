@@ -85,37 +85,16 @@ export default createTheme({
                     fontSize: '1.8rem',
                 },
                 h4: {
-                    fontWeight: 700,
-                    letterSpacing: '-1px',
-                    fontSize: '2rem',
+                    fontSize: '24px',
+                    fontWeight: 500,
+                    fontFamily: "'Montserrat', sans-serif",
+                    marginBottom: '8px',
                 },
                 h3: {
-                    fontWeight: 900,
-                    letterSpacing: '-1px',
-                    margin: '0 0 10px 0',
-                    fontSize: '2.2rem',
-                    lineHeight: '40px',
-                    '@media (max-width:1600px)': {
-                        lineHeight: '38px',
-                        fontSize: '2rem',
-                    },
-                    '@media (max-width:1200px)': {
-                        lineHeight: '32px',
-                        fontSize: '1.8rem',
-                    },
-
-                    '@media (max-width:900px)': {
-                        fontSize: '2.5rem ',
-                        lineHeight: '45px',
-                    },
-                    '@media (max-width:700px)': {
-                        fontSize: '2.2rem ',
-                        lineHeight: '36px',
-                    },
-                    '@media (max-width:400px)': {
-                        fontSize: '2rem ',
-                        lineHeight: '30px',
-                    },
+                    fontSize: '32px',
+                    fontWeight: 500,
+                    fontFamily: "'Montserrat', sans-serif",
+                    marginBottom: '8px',
                 },
                 h2: {
                     fontWeight: 900,
@@ -164,10 +143,14 @@ export default createTheme({
                 },
                 body1: {
                     fontSize: '1.2rem',
+                    fontFamily: "'Montserrat', sans-serif",
+                    color: alpha('#000', 0.7),
                 },
                 body2: {
                     lineHeight: 1.6,
                     fontSize: '1rem',
+                    fontFamily: "'Montserrat', sans-serif",
+                    color: alpha('#000', 0.7),
                 },
             },
         },

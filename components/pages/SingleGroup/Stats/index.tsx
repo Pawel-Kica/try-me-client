@@ -1,19 +1,15 @@
 // Tools
 import { useState } from 'react'
-import { Divider, Stack, styled } from '@mui/material'
+import { Divider, Stack } from '@mui/material'
 // Types
 import type { FunctionComponent } from 'react'
 import type { StatsAPIRequest } from '@/types/API'
 import type { OptionWithAlias } from '@/components/atoms/forms/StyledSelect'
 // Material UI Components
+import Typography from '@mui/material/Typography'
 import StyledSelect from '@/components/atoms/forms/StyledSelect'
 import AvatarAlongsideWithText from '@/components/atoms/User/AvatarAlongsideWithText'
 import Place from './Place'
-
-const Header = styled('h3')(({ theme }) => ({
-    fontSize: '32px',
-    fontWeight: 500,
-}))
 
 interface StatsProps {
     stats: StatsAPIRequest
@@ -41,14 +37,13 @@ const Stats: FunctionComponent<StatsProps> = (props) => {
 
     return (
         <>
-            <Header>Statystyki</Header>
+            <Typography variant="h3">Statystyki</Typography>
 
             <StyledSelect
                 options={options} //
                 onChange={(e) => setCurrentFilter(e.target.value)}
                 value={currentFilter}
                 sx={{
-                    mt: 1,
                     mb: 4,
                 }}
             />

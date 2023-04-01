@@ -5,6 +5,7 @@ import type { Statistics } from '@/types/API'
 // Material UI Components
 import Stats from '@/components/pages/SingleGroup/Stats'
 import Header from '@/components/pages/SingleGroup/Header'
+import ActiveTasks from '@/components/pages/SingleGroup/ActiveTasks'
 
 interface ChujProps {
     //
@@ -41,7 +42,6 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
                     console.log('dasda')
                 }}
                 teamName="Przykladowa ekipa"
-                teamAvatar="https://cdn.pixabay.com/photo/2023/03/27/08/47/cows-7880154_960_720.jpg"
             />
             <Stats
                 stats={{
@@ -49,6 +49,29 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
                     general: stats,
                     monthly: stats,
                 }}
+            />
+            <ActiveTasks
+                tasks={[
+                    {
+                        title: 'Zrob dowolny posiłek',
+                        description: 'Zrob cos tam do jedzenia essa',
+                        createdAt: '3 godziny temu',
+                        involvedPeople: [
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: false }, //
+                            { avatar: 'https://cdn-icons-png.flaticon.com/512/147/147142.png', completed: true }, //
+                        ],
+                        authorName: 'chuj',
+                    },
+                ]}
             />
         </>
     )
