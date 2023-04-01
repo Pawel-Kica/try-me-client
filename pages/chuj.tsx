@@ -39,7 +39,7 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
         },
     ]
 
-    const { data, status } = useQuery<Task[]>({
+    const { data } = useQuery<Task[]>({
         queryKey: 'user_tasks',
         queryFn: async () => gqlRequest(userTasksQuery),
     })

@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query'
+import { use, useEffect } from 'react'
 import { HealthCheck } from '../../helpers/gql/gql-queries'
 
 function GqlHealthCheck() {
