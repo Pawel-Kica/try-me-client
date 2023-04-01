@@ -4,6 +4,7 @@ import type { FunctionComponent } from 'react'
 import type { Statistics } from '@/types/API'
 // Material UI Components
 import Stats from '@/components/pages/SingleGroup/Stats'
+import Header from '@/components/pages/SingleGroup/Header'
 
 interface ChujProps {
     //
@@ -35,6 +36,13 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
     ]
     return (
         <>
+            <Header
+                back={() => {
+                    console.log('dasda')
+                }}
+                teamName="Przykladowa ekipa"
+                teamAvatar="https://cdn.pixabay.com/photo/2023/03/27/08/47/cows-7880154_960_720.jpg"
+            />
             <Stats
                 stats={{
                     annualy: stats,
