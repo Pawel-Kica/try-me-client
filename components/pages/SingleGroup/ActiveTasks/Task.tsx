@@ -13,6 +13,7 @@ const Base = styled('div')(({ theme }) => ({
 }))
 
 const Task: FunctionComponent<Task> = (props) => {
+    console.log(props)
     const amountOfPeopleWhoCompletedTheTask = props.submissions.length
     return (
         <Base>

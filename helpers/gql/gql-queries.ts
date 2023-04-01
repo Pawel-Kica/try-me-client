@@ -176,6 +176,7 @@ export const userTasksQuery: QueryEntity = {
             }
         }
     `,
+    auth: true,
 }
 
 export const createTaskQuery: QueryEntity = {

@@ -6,6 +6,9 @@ import type { Statistics } from '@/types/API'
 import Stats from '@/components/pages/SingleGroup/Stats'
 import Header from '@/components/pages/SingleGroup/Header'
 import ActiveTasks from '@/components/pages/SingleGroup/ActiveTasks'
+import { useQuery } from 'react-query'
+import { Task, userTasksQuery } from '../helpers/gql/gql-queries'
+import { gqlRequest } from '../helpers/gql/gql-request'
 
 interface ChujProps {
     //
@@ -35,6 +38,13 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
             points: 100,
         },
     ]
+
+    const { data, status } = useQuery<Task[]>({
+        queryKey: 'user_tasks',
+        queryFn: async () => gqlRequest(userTasksQuery),
+    })
+    console.log(data, 'tuuu')
+
     return (
         <>
             <Header
@@ -51,7 +61,7 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
                 }}
             />
             {/* Request to backend */}
-            <ActiveTasks tasks={[]} />
+            <ActiveTasks tasks={data || []} />
         </>
     )
 }
