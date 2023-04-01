@@ -1,4 +1,3 @@
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import { Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -15,15 +14,15 @@ const challenges = [
     {
         id: 912,
         imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
-        name: 'Akademikowy tenis',
+        name: 'Bitwa o kebsa',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
-        description: 'Akropol',
+        description: 'najwięcej wygranych = kebsik',
         createdBy: 'Ciebie',
     },
     {
         id: 12,
         imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
-        name: 'Bieganie',
+        name: '100km do końca marca',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
         description: 'Cel: maraton w kwietniu',
         createdBy: 'Michał',
@@ -31,9 +30,9 @@ const challenges = [
     {
         id: 15,
         imgSrc: 'https://mui.com/static/images/avatar/1.jpg',
-        name: 'Dobczyckie Bestie',
+        name: 'Dookoła jeziora w <3h',
         people: { Paweł: true, Krzyś: true, Paulina: false, Michał: true, Kacper: false, Kasia: false },
-        description: 'Grupy znajomych z Dobczyc',
+        description: '',
         createdBy: 'Paulina',
     },
 ]
@@ -97,15 +96,7 @@ export default function Home() {
                 <List>
                     {challenges.map((challenge) => (
                         <React.Fragment key={`${challenge.id}`}>
-                            <ListItem
-                                key={`${challenge.id}`}
-                                alignItems="flex-start"
-                                secondaryAction={
-                                    <Button onClick={() => doChallengeClicked(challenge)}>
-                                        <HighlightOffRoundedIcon></HighlightOffRoundedIcon>
-                                    </Button>
-                                }
-                            >
+                            <ListItem key={`${challenge.id}`} alignItems="flex-start">
                                 <ListItemAvatar>
                                     <Avatar alt="" src={challenge.imgSrc} />
                                 </ListItemAvatar>
@@ -115,16 +106,23 @@ export default function Home() {
                                             <Typography sx={{ display: 'inline' }} component="span" variant="h5" color="text.primary">
                                                 {challenge.name}
                                             </Typography>
-                                            <Typography sx={{ display: 'inline' }} component="span" variant="body1">
+                                            <Typography sx={{ display: 'inline' }} component="span" variant="body2">
                                                 {' od ' + challenge.createdBy}
                                             </Typography>
                                         </span>
                                     }
                                     secondary={
                                         <React.Fragment>
-                                            <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                                                {challenge.description}
-                                            </Typography>
+                                            {challenge.description && (
+                                                <Typography
+                                                    sx={{ display: 'inline' }}
+                                                    component="span"
+                                                    variant="body2"
+                                                    color="text.primary"
+                                                >
+                                                    {challenge.description}
+                                                </Typography>
+                                            )}
                                             <Typography
                                                 sx={{ display: 'flex', flexFlow: 'row wrap', gap: 1 }}
                                                 component="span"
@@ -133,7 +131,11 @@ export default function Home() {
                                             >
                                                 {Object.entries(challenge.people).map(([person, done]) => (
                                                     <Avatar
-                                                        sx={done ? undefined : { filter: 'saturate(0) brightness(0.7)' }}
+                                                        sx={{
+                                                            width: 24,
+                                                            height: 24,
+                                                            ...(done ? undefined : { filter: 'saturate(0) brightness(0.7)' }),
+                                                        }}
                                                         key={person}
                                                         alt=""
                                                         src={challenge.imgSrc}
