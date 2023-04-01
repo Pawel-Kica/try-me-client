@@ -122,7 +122,7 @@ export const userGroupsQuery: QueryEntity = {
     auth: true,
 }
 
-export interface Group {
+export interface GroupEntity {
     group_id: string
     title: string
     description: string
@@ -149,11 +149,11 @@ export const groupString = gql`
     invitation_id
 `
 
-export interface UserGroupsResult extends Group {}
+export interface UserGroupsResult extends GroupEntity {}
 
 export interface CreateGroupArgs {
     title: string
-    descripstion: string
+    description: string
     members: string[]
 }
 

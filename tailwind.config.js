@@ -13,13 +13,13 @@ module.exports = {
             },
             colors: {
                 // Primary
-                pr: 'var(--primary)',
+                // pr: 'var(--primary)',
                 // Secondaary
-                sc: 'var(--secondary)',
+                // sc: 'var(--secondary)',
                 // material
-                PRIMARY: '#F06543',
-                SECONDARY: '#F09D51',
-                TEXT: '#121616',
+                pr: '#F06543',
+                sc: '#F09D51',
+                tx: '#121616',
             },
             boxShadow: {
                 icon: '0px 0px 2px 1px rgba(0, 0, 0, 0.2)',
