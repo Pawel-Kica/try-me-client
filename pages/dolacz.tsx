@@ -38,7 +38,7 @@ export default function Home() {
                     style={{ display: 'grid', gap: 8, placeItems: 'center', gridTemplateColumns: 'auto auto' }}
                 >
                     <Diversity3RoundedIcon></Diversity3RoundedIcon>
-                    <span>Dołącz do drużyny</span>
+                    <span>Zacznij przygodę</span>
                 </Button>
             </div>
         </div>
