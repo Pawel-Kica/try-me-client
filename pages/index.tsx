@@ -102,14 +102,14 @@ export default function Home() {
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
-                                        <span>
+                                        <div>
                                             <Typography sx={{ display: 'inline' }} component="span" variant="h5" color="text.primary">
                                                 {challenge.name}
                                             </Typography>
                                             <Typography sx={{ display: 'inline' }} component="span" variant="body2">
                                                 {' od ' + challenge.createdBy}
                                             </Typography>
-                                        </span>
+                                        </div>
                                     }
                                     secondary={
                                         <React.Fragment>
@@ -130,11 +130,12 @@ export default function Home() {
                                                 color="text.primary"
                                             >
                                                 {Object.entries(challenge.people).map(([person, done]) => (
-                                                    <Avatar
-                                                        sx={{
+                                                    <img
+                                                        style={{
                                                             width: 24,
                                                             height: 24,
                                                             ...(done ? undefined : { filter: 'saturate(0) brightness(0.7)' }),
+                                                            borderRadius: '50%',
                                                         }}
                                                         key={person}
                                                         alt=""

@@ -77,3 +77,73 @@ export const healthcheckQuery: QueryEntity = {
 }
 
 export type HealthCheck = boolean
+
+export const userGroupsQuery: QueryEntity = {
+    name: 'user_groups',
+    query: gql`
+        query {
+            user_groups {
+                group_id
+                icon
+                description
+                title
+                owner {
+                    user_id
+                }
+                members {
+                    user_id
+                }
+            }
+        }
+    `,
+    auth: true,
+}
+
+export interface Group {
+    group_id: string
+    title: string
+    description: string
+    icon: string
+}
+
+export interface UserGroupsResult extends Group {
+    owner: User
+    members: User[]
+}
+
+export interface CreateGroupArgs {
+    title: string
+    descripstion: string
+    members: string[]
+}
+
+export const createGroupQuery: QueryEntity = {
+    name: 'create_group',
+    query: gql`
+        mutation ($title: String!, $description: String!, $members: [String!]!) {
+            create_group(title: $title, description: $description, members: $members) {
+                group_id
+                title
+                description
+                invitation_id
+                icon
+            }
+        }
+    `,
+}
+
+export const userTasksQuery: QueryEntity = {
+    name: 'user_tasks',
+    query: gql`
+        query {
+            user_tasks {
+                task_id
+                due_date
+                description
+                created_by {
+                    user_id
+                }
+            }
+        }
+    `,
+}
