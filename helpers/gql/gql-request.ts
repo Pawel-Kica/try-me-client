@@ -1,7 +1,7 @@
 import { DocumentNode } from '@apollo/client'
-import { GraphQLClient, Variables } from 'graphql-request'
-import { storageAuth } from '../localStorage'
+import { GraphQLClient } from 'graphql-request'
 import config from '../config'
+import { storageAuth } from '../localStorage'
 
 export const gqlClient = new GraphQLClient(config.API_ADDRESS + '/graphql' || '')
 
@@ -22,7 +22,6 @@ export async function gqlRequest<T>(
         if (query.auth) {
             localHeaders = { ...localHeaders, ...storageAuth() }
         }
-        console.log(variables)
         const res = await gqlClient.request(query.query, variables, localHeaders)
         if (typeof query.name === 'string') {
             //@ts-ignore
