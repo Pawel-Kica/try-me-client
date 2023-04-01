@@ -7,20 +7,29 @@ import { setLocalStorageItem, setStorageAuthToken } from '../helpers/localStorag
 
 export default function Test() {
     const [username, setUsername] = useState<string>('')
+    const [res, setRes] = useState<AuthenticatedUser>()
 
-    const demoSignInMutation = useMutation({
-        mutationFn: async (args: DemoSignInArgs) => gqlRequest<AuthenticatedUser>(demoSignInQuery, args),
-        onSuccess: (res) => {
-            setStorageAuthToken(res.authToken)
-        },
-    })
+    const handler = async () => {
+        const response = await gqlRequest<AuthenticatedUser>(demoSignInQuery, { username })
+        alert(JSON.stringify(response))
+
+        setRes(response)
+        setStorageAuthToken(response.authToken)
+    }
 
     return (
         <div>
             Enter your username
             <input type="text" className="b-2 p-2 bg-green-300" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button onClick={() => demoSignInMutation.mutate({ username })}>Authenticated</button>
-            <div className="mt-2">Response: {JSON.stringify(demoSignInMutation.data, null, 2)}</div>
+            <button onClick={handler}>Authenticated</button>
+            <div className="mt-2">Response: {JSON.stringify(res)}</div>
         </div>
     )
 }
+
+// const demoSignInMutation = useMutation({
+//     mutationFn: async (args: DemoSignInArgs) => gqlRequest<AuthenticatedUser>(demoSignInQuery, args),
+//     onSuccess: (res) => {
+//         setStorageAuthToken(res.authToken)
+//     },
+// })

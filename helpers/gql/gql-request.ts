@@ -11,7 +11,11 @@ export interface QueryEntity {
     auth?: boolean
 }
 
-export async function gqlRequest<T>(query: QueryEntity, variables: Record<string, any> = {}, headers: Record<string, any> = {}): Promise<T> {
+export async function gqlRequest<T>(
+    query: QueryEntity,
+    variables: Record<string, any> = {},
+    headers: Record<string, any> = {},
+): Promise<T> {
     try {
         let localHeaders = { ...headers }
         // Add automatically authentication headers
