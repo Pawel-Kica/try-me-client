@@ -42,7 +42,7 @@ const challenges = [
     },
 ]
 
-export default () => {
+export default function NoweWyzwanie() {
     const router = useRouter()
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')

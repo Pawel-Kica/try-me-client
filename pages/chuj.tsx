@@ -14,31 +14,30 @@ interface ChujProps {
     //
 }
 
+export const stats: Statistics[] = [
+    {
+        avatar: 'https://avatars.githubusercontent.com/u/89777457?v=4',
+        firstName: 'Pawel',
+        lastName: 'Kica',
+        place: 1,
+        points: 100,
+    },
+    {
+        avatar: 'https://avatars.githubusercontent.com/u/20194971?v=4',
+        firstName: 'Jakub',
+        lastName: 'Węgrzyn',
+        place: 2,
+        points: 78,
+    },
+    {
+        avatar: 'https://avatars.githubusercontent.com/u/40713288?s=100&v=4',
+        firstName: 'Filip',
+        lastName: 'Ocytko',
+        place: 3,
+        points: 33,
+    },
+]
 const Chuj: FunctionComponent<ChujProps> = (props) => {
-    const stats: Statistics[] = [
-        {
-            avatar: 'https://www.pap.pl/sites/default/files/styles/main_image/public/202303/pap_20220829_087%20%283%29.jpg?h=34bb6cd0&itok=4Sfcw5S4',
-            firstName: 'Kacper',
-            lastName: 'Ksiazek',
-            place: 1,
-            points: 100,
-        },
-        {
-            avatar: 'https://www.pap.pl/sites/default/files/styles/main_image/public/202303/pap_20220829_087%20%283%29.jpg?h=34bb6cd0&itok=4Sfcw5S4',
-            firstName: 'Kacper',
-            lastName: 'Ksiazek',
-            place: 2,
-            points: 100,
-        },
-        {
-            avatar: 'https://www.pap.pl/sites/default/files/styles/main_image/public/202303/pap_20220829_087%20%283%29.jpg?h=34bb6cd0&itok=4Sfcw5S4',
-            firstName: 'Kacper',
-            lastName: 'Ksiazek',
-            place: 3,
-            points: 100,
-        },
-    ]
-
     const { data } = useQuery<Task[]>({
         queryKey: 'user_tasks',
         queryFn: async () => gqlRequest(userTasksQuery),
@@ -46,12 +45,6 @@ const Chuj: FunctionComponent<ChujProps> = (props) => {
 
     return (
         <>
-            <Header
-                back={() => {
-                    console.log('dasda')
-                }}
-                teamName="Przykladowa ekipa"
-            />
             <Stats
                 stats={{
                     annualy: stats,

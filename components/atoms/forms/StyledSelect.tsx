@@ -56,7 +56,7 @@ export default function StyledSelect<T extends number | string | Record<any, any
             {props.options.map((item, index) => {
                 if (item instanceof Object) {
                     return (
-                        <MenuItem value={item.value} key={index}>
+                        <MenuItem value={item.value} key={index} className="">
                             {item.alias}
                         </MenuItem>
                     )

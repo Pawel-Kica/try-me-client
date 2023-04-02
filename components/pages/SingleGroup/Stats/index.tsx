@@ -17,7 +17,7 @@ interface StatsProps {
 
 type FilterOption = keyof StatsAPIRequest
 
-const options: OptionWithAlias<FilterOption>[] = [
+export const options: OptionWithAlias<FilterOption>[] = [
     {
         alias: 'Ten miesiąc',
         value: 'monthly',
@@ -27,7 +27,7 @@ const options: OptionWithAlias<FilterOption>[] = [
         value: 'annualy',
     },
     {
-        alias: 'Ogolne',
+        alias: 'Ogólne',
         value: 'general',
     },
 ]
@@ -37,8 +37,7 @@ const Stats: FunctionComponent<StatsProps> = (props) => {
 
     return (
         <>
-            <Typography variant="h3">Statystyki</Typography>
-
+            <div className="text-2xl font-medium mb-2">Statystyki</div>
             <StyledSelect
                 options={options} //
                 onChange={(e) => setCurrentFilter(e.target.value)}
@@ -47,7 +46,6 @@ const Stats: FunctionComponent<StatsProps> = (props) => {
                     mb: 4,
                 }}
             />
-
             <Stack spacing={2} divider={<Divider />}>
                 {props.stats[currentFilter].map((item, index) => {
                     return (
