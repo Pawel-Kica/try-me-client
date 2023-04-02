@@ -17,7 +17,7 @@ interface ChujProps {
 export const stats: Statistics[] = [
     {
         avatar: 'https://avatars.githubusercontent.com/u/89777457?v=4',
-        firstName: 'Pawel',
+        firstName: 'Paweł',
         lastName: 'Kica',
         place: 1,
         points: 100,

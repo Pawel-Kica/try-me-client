@@ -4,7 +4,6 @@ import type { Statistics } from '@/types/API'
 import type { FunctionComponent } from 'react'
 // Material UI Components
 import ActiveTasks from '@/components/pages/SingleGroup/ActiveTasks'
-import Header from '@/components/pages/SingleGroup/Header'
 import Stats from '@/components/pages/SingleGroup/Stats'
 import { useQuery } from 'react-query'
 import { Task, userTasksQuery } from '../helpers/gql/gql-queries'
@@ -17,7 +16,7 @@ interface ChujProps {
 export const stats: Statistics[] = [
     {
         avatar: 'https://avatars.githubusercontent.com/u/89777457?v=4',
-        firstName: 'Pawel',
+        firstName: 'Paweł',
         lastName: 'Kica',
         place: 1,
         points: 100,
@@ -28,6 +27,7 @@ export const stats: Statistics[] = [
         lastName: 'Węgrzyn',
         place: 2,
         points: 78,
+        previousWinner: true,
     },
     {
         avatar: 'https://avatars.githubusercontent.com/u/40713288?s=100&v=4',

@@ -20,4 +20,5 @@ export interface Statistics {
     avatar: string
     firstName: string
     lastName: string
+    previousWinner?: boolean
 }
