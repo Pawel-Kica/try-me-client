@@ -1,9 +1,9 @@
 // Tools
 import styled from '@emotion/styled'
 // Types
-import type { FunctionComponent } from 'react'
-import { Typography, Box, Avatar } from '@mui/material'
 import StyledButton from '@/components/atoms/forms/StyledButton'
+import { Avatar, Box, Typography } from '@mui/material'
+import type { FunctionComponent } from 'react'
 import { Task as TaskComponent } from '../../../../helpers/gql/gql-queries'
 
 const Base = styled('div')(({ theme }) => ({
@@ -33,11 +33,7 @@ const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
             <div className="mt-2 mb-1">Grupa: Developerzy</div>
             <Box
                 sx={{
-                    display: 'grid',
-                    gridTemplateColumns: ' repeat(7, 1fr)',
-                    gridTemplateRows: `repeat(${Math.ceil(props.invited_users.length / 7)}, 1fr)`,
-                    gridColumnGap: ' 6px',
-                    gridRowGap: '6px',
+                    display: 'flex',
                     mb: 3,
                 }}
             >
@@ -51,8 +47,8 @@ const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
                             key={index}
                             src={item.photo}
                             sx={{
-                                width: '100%',
-                                height: '100%',
+                                width: '32px',
+                                height: '32px',
                                 filter: `grayscale(${a ? 1 : 0})`,
                             }}
                         />

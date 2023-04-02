@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
                                 component="div"
                                 style={{
                                     display: 'grid',
-                                    letterSpacing: '2.1px',
+                                    letterSpacing: '2.2px',
                                     placeItems: 'center',
                                     fontWeight: 'bolder',
                                     fontSize: '2em',
