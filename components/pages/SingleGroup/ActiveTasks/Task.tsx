@@ -30,7 +30,7 @@ const TaskComponent: FunctionComponent<TaskComponent> = (props) => {
                 <strong>{`${amountOfPeopleWhoCompletedTheTask} / ${props.invited_users.length} `}</strong>
                 osób ukończyło zadanie
             </Typography>
-            <div className="mt-2 mb-1">Grupa: Developerzy</div>
+            <div className="mt-2 mb-1">Grupa: Wymiatacze</div>
             <Box
                 sx={{
                     display: 'flex',
